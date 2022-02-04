@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommonMethods  extends PageInitializer {
@@ -100,6 +101,25 @@ public class CommonMethods  extends PageInitializer {
         //to format the date according to out choice we have to use this function
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
+    }
+    public  static void radioButtonClick(WebElement element){
+        boolean isEnable= element.isEnabled();
+        boolean isSelected= element.isSelected();
+        if(isEnable) {
+            if (isSelected == true) {
+                element.click();
+            }
+            element.click();
+        }
+    }
+    //Write a common method for choosing a date from calendar
+    public static void pickDateFromCalendar(List<WebElement> dates, String dateNumber){
+        for(WebElement date:dates){
+            String dateText = date.getText();
+            if(dateText.equals(dateNumber)){
+                click(date);
+            }
+        }
     }
 
     public static void closeBrowser(){
